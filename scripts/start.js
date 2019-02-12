@@ -20,12 +20,7 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const clearConsole = require('react-dev-utils/clearConsole')
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles')
-const {
-  choosePort,
-  createCompiler,
-  prepareProxy,
-  prepareUrls
-} = require('react-dev-utils/WebpackDevServerUtils')
+const { choosePort, createCompiler, prepareProxy, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils')
 const openBrowser = require('react-dev-utils/openBrowser')
 const paths = require('../config/paths')
 const configFactory = require('../config/webpack.config')
@@ -80,10 +75,8 @@ checkBrowsers(paths.appPath, isInteractive)
     const useTypeScript = fs.existsSync(paths.appTsConfig)
     const urls = prepareUrls(protocol, HOST, port)
     const devSocket = {
-      warnings: warnings =>
-        devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-      errors: errors =>
-        devServer.sockWrite(devServer.sockets, 'errors', errors)
+      warnings: warnings => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
+      errors: errors => devServer.sockWrite(devServer.sockets, 'errors', errors)
     }
     // Create a webpack compiler that is configured with custom messages.
     const compiler = createCompiler(
@@ -114,9 +107,9 @@ checkBrowsers(paths.appPath, isInteractive)
       }
       console.log(chalk.cyan('Starting the development server...\n'))
       openBrowser(urls.localUrlForBrowser)
-    });
+    })
 
-    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+    ;['SIGINT', 'SIGTERM'].forEach(function (sig) {
       process.on(sig, function () {
         devServer.close()
         process.exit()

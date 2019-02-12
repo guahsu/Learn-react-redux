@@ -30,6 +30,8 @@ class Counter extends Component {
           return { counter: prevState.counter - value }
         })
         break
+      default:
+        return null
     }
   }
 
