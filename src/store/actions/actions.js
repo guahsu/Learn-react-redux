@@ -10,29 +10,46 @@ export const increment = () => {
     type: INCREMENT
   }
 }
+
 export const decrement = () => {
   return {
     type: DECREMENT
   }
 }
+
 export const add = (value) => {
   return {
     type: ADD,
     value
   }
 }
+
 export const subtract = (value) => {
   return {
     type: SUBTRACT,
     value
   }
 }
-export const storeResult = (result) => {
+
+export const saveResult = result => {
   return {
     type: STORE_RESULT,
     result
   }
 }
+
+export const storeResult = (result) => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(saveResult(result))
+      return {
+        type: STORE_RESULT,
+        result
+      }
+    }, 2000)
+  }
+}
+
 export const deleteResult = (resultId) => {
   return {
     type: DELETE_RESULT,
