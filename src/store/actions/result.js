@@ -8,13 +8,11 @@ export const saveResult = result => {
 }
 
 export const storeResult = (result) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     setTimeout(() => {
+      const oldCounter = getState().reducerReducer.counter
+      console.log(oldCounter)
       dispatch(saveResult(result))
-      return {
-        type: actionTypes.STORE_RESULT,
-        result
-      }
     }, 2000)
   }
 }
